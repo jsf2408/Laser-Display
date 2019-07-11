@@ -2,7 +2,8 @@ clc
 clear 
 close all
 
-[input, sample_rate] = audioread('test.mp3');
+%[input, sample_rate] = audioread('test.mp3');
+[input, sample_rate] = audioread('test.wav');
 
 player = audioplayer(input,sample_rate);
 
@@ -45,7 +46,6 @@ start_time = rem(now,1);
 player.TimerFcn = {@update_plots, plot_1, scatter_1, plot_2, scatter_2, input, sample_rate, plot_samples, start_time, laser_plot};
 player.TimerPerio = 0.05; % this is the update rate of the plots in seconds, dont go too low or matlab will shit the bed, 0.05 = 20Hz
 play(player);
-
 
 function update_plots(player, ~, plot_1, scatter_1, plot_2, scatter_2, input, sample_rate, plot_samples, start_time, laser_plot)
 
